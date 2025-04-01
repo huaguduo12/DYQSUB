@@ -1,4 +1,3 @@
-
 let 快速订阅访问入口 = ['auto'];
 let addresses = [];
 let addressesapi = [];
@@ -41,7 +40,7 @@ let MamaJustKilledAMan = ['telegram', 'twitter', 'miaoko'];
 let proxyIPPool = [];
 let socks5Data;
 let alpn = 'h3';
-let 网络备案 = `<a href='https://t.me/CMLiussss'>萌ICP备-20240707号</a>`;//写你自己的维护者广告
+let 网络备案 = `<a href='https://t.me/jiliankeji'>萌ICP备-20240707号</a>`;//写你自己的维护者广告
 let 额外ID = '0';
 let 加密方式 = 'auto';
 let 网站图标, 网站头像, 网站背景;
@@ -464,7 +463,95 @@ function utf8ToBase64(str) {
 }
 
 export default {
-	async fetch(request, env) {
+    async fetch(request, env) {
+        // 定义主题
+        const themes = {
+			1: {
+				primaryColor: '#4f46e5',  // 现代靛蓝
+				hoverColor: '#4338ca',
+				bgColor: '#f5f3ff',
+				cardBg: '#e0e7ff',
+				gradientColor: 'rgba(79,70,229, 0.8)',
+				qrColor: '#4f46e5'
+			},
+			2: {
+				primaryColor: '#292524',  // 深褐黑
+				hoverColor: '#44403c',
+				bgColor: '#1c1917',
+				cardBg: '#292524',
+				gradientColor: 'rgba(41,37,36, 0.8)',
+				qrColor: '#78716c'
+			},
+			3: {
+				primaryColor: '#f43f5e',  // 珊瑚红
+				hoverColor: '#e11d48',
+				bgColor: '#fff1f2',
+				cardBg: '#ffe4e6',
+				gradientColor: 'rgba(244,63,94, 0.8)',
+				qrColor: '#f43f5e'
+			},
+			4: {
+				primaryColor: '#8b5cf6',  // 梦幻紫
+				hoverColor: '#7c3aed',
+				bgColor: '#f5f3ff',
+				cardBg: '#ede9fe',
+				gradientColor: 'rgba(139,92,246, 0.8)',
+				qrColor: '#8b5cf6'
+			},
+			5: {
+				primaryColor: '#FF6B81',  // 草莓红
+				hoverColor: '#FF4757',
+				bgColor: '#FFE6E6',
+				cardBg: '#FFCDD2',
+				gradientColor: 'rgba(255,107,129, 0.8)',
+				qrColor: '#FF6B81'
+			},
+			6: {
+				primaryColor: '#ec4899',  // 甜心粉
+				hoverColor: '#db2777',
+				bgColor: '#fdf2f8',
+				cardBg: '#fce7f3',
+				gradientColor: 'rgba(236,72,153, 0.8)',
+				qrColor: '#ec4899'
+			},
+			7: {
+				primaryColor: '#f97316',  // 活力橙
+				hoverColor: '#ea580c',
+				bgColor: '#fff7ed',
+				cardBg: '#ffedd5',
+				gradientColor: 'rgba(249,115,22, 0.8)',
+				qrColor: '#f97316'
+			},
+			8: {
+				primaryColor: '#06b6d4',  // 碧海蓝
+				hoverColor: '#0891b2',
+				bgColor: '#ecfeff',
+				cardBg: '#cffafe',
+				gradientColor: 'rgba(6,182,212, 0.8)',
+				qrColor: '#06b6d4'
+			},
+			9: {
+				primaryColor: '#6366f1',  // 星空蓝
+				hoverColor: '#4f46e5',
+				bgColor: '#eef2ff',
+				cardBg: '#e0e7ff',
+				gradientColor: 'rgba(99,102,241, 0.8)',
+				qrColor: '#6366f1'
+			},
+			10: {
+				primaryColor: '#14b8a6',  // 青碧绿
+				hoverColor: '#0d9488',
+				bgColor: '#f0fdfa',
+				cardBg: '#ccfbf1',
+				gradientColor: 'rgba(20,184,166, 0.8)',
+				qrColor: '#14b8a6'
+			}
+		};
+
+        // 使用变量来设置主题
+        const COLOR = Number(env.COLOR) || 3; // 选择自然绿色主题
+        const theme = themes[COLOR];
+
 		if (env.TOKEN) 快速订阅访问入口 = await 整理(env.TOKEN);
 		BotToken = env.TGTOKEN || BotToken;
 		ChatID = env.TGID || ChatID;
@@ -601,7 +688,7 @@ export default {
 					const URL = URLs[Math.floor(Math.random() * URLs.length)];
 					return envKey === 'URL302' ? Response.redirect(URL, 302) : fetch(new Request(URL, request));
 				}
-				return await subHtml(request);
+				return await subHtml(request, theme);
 			}
 
 			if (!host || !uuid) {
@@ -653,7 +740,7 @@ export default {
 				const URL = URLs[Math.floor(Math.random() * URLs.length)];
 				return envKey === 'URL302' ? Response.redirect(URL, 302) : fetch(new Request(URL, request));
 			}
-			return await subHtml(request);
+			return await subHtml(request, theme);
 		} else if ((userAgent.includes('clash') || (format === 'clash' && !userAgent.includes('subconverter'))) && !userAgent.includes('nekobox') && !userAgent.includes('cf-workers-sub')) {
 			subConverterUrl = `https://${subConverter}/sub?target=clash&url=${encodeURIComponent(subConverterUrl)}&insert=false&config=${encodeURIComponent(subConfig)}&emoji=true&list=false&tfo=false&scv=true&fdn=false&sort=false&new_name=true`;
 		} else if ((userAgent.includes('sing-box') || userAgent.includes('singbox') || (format === 'singbox' && !userAgent.includes('subconverter'))) && !userAgent.includes('cf-workers-sub')) {
@@ -978,23 +1065,24 @@ export default {
 	}
 };
 
-async function subHtml(request) {
+async function subHtml(request, theme) {
 	const url = new URL(request.url);
 	const HTML = `
 			<!DOCTYPE html>
 			<html>
 			<head>
-				<meta charset="UTF-8">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<title>${FileName}</title>
-				${网站图标}
-				<style>
-					:root {
-						--primary-color: #4361ee;
-						--hover-color: #3b4fd3;
-						--bg-color: #f5f6fa;
-						--card-bg: #ffffff;
-					}
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${FileName}</title>
+                ${网站图标}
+            <style>
+                :root {
+                    --primary-color: ${theme.primaryColor};
+                    --hover-color: ${theme.hoverColor};
+                    --bg-color: ${theme.bgColor};
+                    --gradient-color: ${theme.gradientColor};
+                    --card-bg: ${theme.cardBg};
+                }
 					
 					* {
 						box-sizing: border-box;
@@ -1020,10 +1108,10 @@ async function subHtml(request) {
 					.container {
 						position: relative;
 						/* 使用rgba设置半透明背景 */
-						background: rgba(255, 255, 255, 0.7);
+						background: rgba(255, 255, 255, 0.1);
 						/* 添加磨砂玻璃效果 */
 						backdrop-filter: blur(10px);
-						-webkit-backdrop-filter: blur(10px); /* Safari兼容 */
+						-webkit-backdrop-filter: blur(1px); /* Safari兼容 */
 						max-width: 600px;
 						width: 90%;
 						padding: 2rem;
@@ -1036,7 +1124,7 @@ async function subHtml(request) {
 
 					/* 调整hover效果 */
 					.container:hover {
-						transform: translateY(-5px);
+						transform: translateY(-3px);
 						box-shadow: 0 15px 30px rgba(0,0,0,0.1),
 									inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 					}
@@ -1046,6 +1134,11 @@ async function subHtml(request) {
 						color: var(--primary-color);
 						margin-bottom: 2rem;
 						font-size: 1.8rem;
+					}
+					
+					::selection {
+						background: var(--primary-color); /* 选中文本背景变为橙色 */
+						color: white;
 					}
 					
 					.input-group {
@@ -1168,11 +1261,11 @@ async function subHtml(request) {
 						bottom: -3px;
 						border-radius: 50%;
 						animation: rotate 3s linear infinite;
-						background: conic-gradient(
+						background: linear-gradient(
 							from 0deg,
 							transparent 0%,
-							var(--primary-color) 20%,
-							rgba(67, 97, 238, 0.8) 40%,
+							var(--gradient-color) 20%,
+							var(--gradient-color) 40%,
 							transparent 60%,
 							transparent 100%
 						);
@@ -1305,7 +1398,7 @@ async function subHtml(request) {
 							<h1>${FileName}</h1>
 						</div>
 					<div class="input-group">
-						<label for="link">节点链接</label>
+						<label for="link" style="font-weight: bold;">节点链接</label>
 						<input type="text" id="link" placeholder="${decodeURIComponent(atob('JUU4JUFGJUI3JUU4JUJFJTkzJUU1JTg1JUE1JTIwVk1lc3MlMjAlMkYlMjBWTEVTUyUyMCUyRiUyMFRyb2phbiUyMCVFOSU5MyVCRSVFNiU4RSVBNQ=='))}">
 					</div>
 					
@@ -1313,7 +1406,7 @@ async function subHtml(request) {
 					
 					<div class="input-group">
 						<div style="display: flex; align-items: center;">
-							<label for="result">优选订阅</label>
+							<label for="result" style="font-weight: bold;">优选订阅</label>
 							<div style="position: relative;">
 								<span class="info-icon" onclick="toggleTooltip(event)">!</span>
 								<div class="info-tooltip" id="infoTooltip">
@@ -1361,7 +1454,7 @@ async function subHtml(request) {
 							tooltip.style.top = '20px';
 							tooltip.style.transform = 'translateX(-50%)';
 							tooltip.style.padding = '8px 16px';
-							tooltip.style.background = '#4361ee';
+							tooltip.style.background = 'var(--primary-color)';
 							tooltip.style.color = 'white';
 							tooltip.style.borderRadius = '4px';
 							tooltip.style.zIndex = '1000';
@@ -1415,13 +1508,11 @@ async function subHtml(request) {
 							document.getElementById('result').value = subLink;
 	
 							// 更新二维码
-							const qrcodeDiv = document.getElementById('qrcode');
-							qrcodeDiv.innerHTML = '';
-							new QRCode(qrcodeDiv, {
+						    new QRCode(document.getElementById('qrcode'), {
 								text: subLink,
 								width: 220, // 调整宽度
 								height: 220, // 调整高度
-								colorDark: "#4a60ea", // 二维码颜色
+								colorDark: "${theme.qrColor}", // 二维码颜色
 								colorLight: "#ffffff", // 背景颜色
 								correctLevel: QRCode.CorrectLevel.L, // 设置纠错级别
 								scale: 1 // 调整像素颗粒度
